@@ -1,7 +1,7 @@
 Dnoted
 =======
 
-Dnoted is a daemon that will allow you to leave yourself notes in selected directories that will pop up when you re-enter those directories.
+Dnoted is a program that will allow you to leave yourself notes in selected directories that will pop up when you re-enter those directories.
 
 
 ````

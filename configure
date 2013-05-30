@@ -1,2 +1,24 @@
 #!/bin/sh
+
+function dnoted_dir()
+{
+	if [ -e $HOME/.dnoted ]; then
+		echo "Existing directory found..."
+		echo "Do you want to purge all stored directory data [Y/N]?"
+		read answer
+		if [ $answer = "Y" ]; then
+			echo "Okay deleting"
+			rm $HOME/.dnoted/*
+		else
+			echo "Okay ignoring"
+		fi
+
+	else
+		echo "No dnoted directory found, creating..."
+		mkdir -p $HOME/.dnoted
+	fi
+}
 echo "Dnoted configure will make a plain text file to store your messages at $HOME/.dnoted"
+
+
+dnoted_dir
