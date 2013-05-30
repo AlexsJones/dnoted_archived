@@ -15,6 +15,11 @@ $ cd game_in_progress
 dnoted says: "I really have to finish level 43 (~/Projects/game_in_progress)"
 ````
 
+Platforms
+=========
+
+GNU/Linux & Mac OS X
+
 Installation
 ============
 
