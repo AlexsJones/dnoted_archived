@@ -1,5 +1,5 @@
 #!/bin/sh
-
+OS=`uname`
 function dnoted_dir()
 {
 	if [ -e $HOME/.dnoted ]; then
@@ -17,11 +17,12 @@ function dnoted_dir()
 		echo "No dnoted directory found, creating..."
 		mkdir -p $HOME/.dnoted
 	fi
+	touch $HOME/.dnoted/dnoted.conf
 }
 echo "Dnoted configure will make a plain text file to store your messages at $HOME/.dnoted"
 function set_bashrc
 {
-	cmd=`grep -F "PROMPT_COMMAND" $HOME/.bashrc`
+	cmd=`grep -F "PROMPT_COMMAND" $HOME/.bash_profile`
 	if [ $? -eq 0 ]
 	then
 		echo "Found existing bashrc link"
@@ -29,11 +30,10 @@ function set_bashrc
 	fi
 	existing_prompt=$PROMPT_COMMAND
 	existing_prompt="$existing_prompt dnoted -p"
-	echo "export PROMPT_COMMAND=\"$existing_prompt\"" >> $HOME/.bashrc
-	source $HOME/.bashrc
+	echo "export PROMPT_COMMAND=\"$existing_prompt\"" >> $HOME/.bash_profile
+	source $HOME/.bash_profile
 }
-
 dnoted_dir
 set_bashrc
 echo "Please run make"
-echo "Note: The program will start the next time you open a terminal window"
+echo "Please source $HOME/.bash_profile after installing"

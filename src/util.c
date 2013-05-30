@@ -36,6 +36,7 @@ char *get_cwd(void)
 		perror("get_cwd: ");
 		exit(1);
 	}
+	return ret;
 }
 char *file_path(void)
 {
@@ -119,14 +120,19 @@ void delete_message(void)
 	
 	kvp_node *head = pull_kvp_from_file(write_path);	
 
+	char buffer[1024];
+	bzero(buffer,1024);
+	char *homedir = getenv("HOME");
+	strncpy(buffer,homedir,strlen(homedir));
+	strcat(buffer,"/.dnoted/dnoted.temp");
+	printf("Temp file location %s\n",buffer);
 	while(head)
 	{
-		printf("Key %s Value %s\n",head->key,head->value);
 		if(strcmp(head->key,cwd) != 0)
 		{
 			//add it to our new file
 			FILE *fp;
-			if((fp = fopen("dnoted.temp","w")) == NULL)
+			if((fp = fopen(buffer,"w")) == NULL)
 			{
 				perror("delete_message: ");
 				exit(1);
@@ -145,15 +151,16 @@ void delete_message(void)
 		}
 		head = head->next; 
 	}
-
-	/*-----------------------------------------------------------------------------
-	 *   now we removed the original write_path
-	 *-----------------------------------------------------------------------------*/
-	remove(write_path);	
-	/*-----------------------------------------------------------------------------
-	 *  Replace with our new conf file
-	 *-----------------------------------------------------------------------------*/
-	system("mv dnoted.temp $HOME/.dnoted/dnoted.conf");
+	FILE *file;
+	if((file = fopen(buffer,"r")) != NULL)
+	{
+		system("mv $HOME/.dnoted/dnoted.temp $HOME/.dnoted/dnoted.conf");
+		fclose(file);
+	}
+	else
+	{
+		system("rm $HOME/.dnoted/dnoted.conf; touch $HOME/.dnoted/dnoted.conf");
+	}
 	free(write_path);
 	free(cwd);
 }
@@ -161,9 +168,7 @@ void read_message()
 {
 	char *write_path = file_path();
 	char *cwd = get_cwd();
-
 	kvp_node *head = pull_kvp_from_file(write_path);	
-
 	while(head)
 	{
 		if(strcmp(head->key,cwd) == 0)
