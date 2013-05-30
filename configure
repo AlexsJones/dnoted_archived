@@ -1,0 +1,2 @@
+#!/bin/sh
+echo "Dnoted configure will make a plain text file to store your messages at $HOME/.dnoted"
