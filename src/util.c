@@ -125,7 +125,6 @@ void delete_message(void)
 	char *homedir = getenv("HOME");
 	strncpy(buffer,homedir,strlen(homedir));
 	strcat(buffer,"/.dnoted/dnoted.temp");
-	printf("Temp file location %s\n",buffer);
 	while(head)
 	{
 		if(strcmp(head->key,cwd) != 0)
