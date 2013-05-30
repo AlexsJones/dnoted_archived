@@ -27,7 +27,9 @@ function set_bashrc
 		echo "Found existing bashrc link"
 		return
 	fi
-	echo "export PROMPT_COMMAND='dnoted -p'" >> $HOME/.bashrc
+	existing_prompt=$PROMPT_COMMAND
+	existing_prompt="$existing_prompt dnoted -p"
+	echo "export PROMPT_COMMAND=\"$existing_prompt\"" >> $HOME/.bashrc
 	source $HOME/.bashrc
 }
 
