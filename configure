@@ -19,6 +19,19 @@ function dnoted_dir()
 	fi
 }
 echo "Dnoted configure will make a plain text file to store your messages at $HOME/.dnoted"
-
+function set_bashrc
+{
+	cmd=`grep -F "PROMPT_COMMAND" $HOME/.bashrc`
+	if [ $? -eq 0 ]
+	then
+		echo "Found existing bashrc link"
+		return
+	fi
+	echo "export PROMPT_COMMAND='dnoted -p'" >> $HOME/.bashrc
+	source $HOME/.bashrc
+}
 
 dnoted_dir
+set_bashrc
+echo "Please run make"
+echo "Note: The program will start the next time you open a terminal window"
