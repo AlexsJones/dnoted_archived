@@ -1,6 +1,8 @@
 Dnoted
 =======
 
+Video of use: http://showterm.io/cf02e0c5a0c979a14b0c6
+
 Dnoted is a program that will allow you to leave yourself notes in selected directories that will pop up when you re-enter those directories.
 
 
