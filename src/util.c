@@ -20,7 +20,6 @@
 #include "util.h"
 #include <stdio.h>
 #include <string.h>
-#include <jnxc_headers/jnxfile.h>
 #define FILEPATH "/.dnoted/dnoted.conf"
 typedef struct kvp_node{
 	char *key;
