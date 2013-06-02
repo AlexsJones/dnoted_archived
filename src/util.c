@@ -15,6 +15,7 @@
  *
  * =====================================================================================
  */
+#include <time.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include "util.h"
@@ -59,8 +60,19 @@ void write_message(char *message)
 	 *  Write into the file path
 	 *-----------------------------------------------------------------------------*/
 	char payload[2048];
+	bzero(payload,2048);
 	strncpy(payload,cwd,strlen(cwd));
 	strncat(payload,"=",1);
+//-->Insert time
+	time_t timer;
+	char buffer[25];
+	struct tm* tm_info;
+	time(&timer);
+	tm_info = localtime(&timer);
+	strftime(buffer,25,"%Y:%m:%d%H:%M:%S",tm_info);
+	strncat(payload,buffer,strlen(buffer));
+	strncat(payload," - ",3);
+//-->
 	strncat(payload,message,strlen(message));
 #ifdef DEBUG
 	printf("Payload %s\n",payload);
@@ -116,9 +128,7 @@ void delete_message(void)
 {
 	char *cwd = get_cwd();
 	char *write_path = file_path();
-	
 	kvp_node *head = pull_kvp_from_file(write_path);	
-
 	char buffer[1024];
 	bzero(buffer,1024);
 	char *homedir = getenv("HOME");
@@ -140,7 +150,7 @@ void delete_message(void)
 			strncpy(payload,head->key,strlen(head->key));
 			strncat(payload,"=",1);
 			strncat(payload,head->value,strlen(head->value));		
-			
+
 			int size = strlen(payload);
 			fwrite(payload,size,1,fp);
 			//Adding end of line

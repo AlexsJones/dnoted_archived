@@ -44,9 +44,11 @@ int main(int argc, char **argv)
 				break;
 			case 'a':
 				write_message(optarg);
+				printf("dnoted added message!\n");
 				break;
 			case 'd':
 				delete_message();
+				printf("dnoted cleared everything from this directory!\n");
 				break;
 			case 'p':
 				read_message();
