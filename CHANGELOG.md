@@ -1,3 +1,9 @@
+## 1.0.1 (2 June 2013)
+
+Bugfixes:
+
+	- Fixed issue with date time rendering incorrectly
+
 ## 1.0.0 (2 June 2013)
 
 Features:
@@ -8,9 +14,3 @@ Features:
 Bugfixes:
 
 	- Fixed issue with installing and now simplified process
-
-## 1.0.1 (2 June 2013)
-
-Bugfixes:
-
-	- Fixed issue with date time rendering incorrectly
