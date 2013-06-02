@@ -24,9 +24,7 @@ Installation
 ============
 
 ````
-./configure
-make
-sudo make install
+./build_and_install.sh
 ````
 
 Usage
