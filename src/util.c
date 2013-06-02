@@ -69,7 +69,7 @@ void write_message(char *message)
 	struct tm* tm_info;
 	time(&timer);
 	tm_info = localtime(&timer);
-	strftime(buffer,25,"%Y:%m:%d%H:%M:%S",tm_info);
+	strftime(buffer,25,"%Y:%m:%d/%H:%M:%S",tm_info);
 	strncat(payload,buffer,strlen(buffer));
 	strncat(payload," - ",3);
 //-->
