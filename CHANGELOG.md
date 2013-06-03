@@ -1,3 +1,9 @@
+## 1.0.2 (3 June 2013)
+
+Bugfixes:
+
+	- Printed out clearer message about sourcing after build_and_install
+
 ## 1.0.1 (2 June 2013)
 
 Bugfixes:
