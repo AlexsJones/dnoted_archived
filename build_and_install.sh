@@ -1,4 +1,4 @@
 ./configure
 make
 sudo make install
-echo "Done"
+echo "Please run this command to complete the setup: source $HOME/.bash_profile"

@@ -33,4 +33,3 @@ function set_bashrc
 }
 dnoted_dir
 set_bashrc
-source $HOME/.bash_profile
