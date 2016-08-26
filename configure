@@ -1,6 +1,6 @@
-#!/bin/sh
+#!/bin/bash
 OS=`uname`
-function dnoted_dir()
+function dnoted_dir
 {
 	if [ -e $HOME/.dnoted ]; then
 		echo "Existing directory found..."
